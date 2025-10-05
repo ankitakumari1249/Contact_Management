@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:replace="~{base :: parent(~{::#content},~{::title},~{::script} )}"
+>
+  <head>
+    <title>Login Page</title>
+  </head>
+  <body class="bg-black">
+    <div id="content">
+      <div class="max-w-md mx-auto mt-6 px-4 sm:px-6 overflow-visible bg-gray-100 dark:bg-gray-900">
+        <div class="block p-6 border-t-8 border-green-700 bg-white rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-blue-700 dark:border-t-8 dark:hover:bg-gray-700">
+          
+          <!-- message here -->
+          <div th:replace="~{message::messagebox}"></div>
+
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Login Here
+          </h5>
+          <p class="font-normal text-gray-700 dark:text-gray-400">
+            Start managing contacts on cloud...
+          </p>
+
+          <div class="text-red-600 text-center my-3" th:if="${param.error}">
+            Invalid username and password.
+          </div>
+
+          <div class="text-green-600 text-center my-3" th:if="${param.logout}">
+            You have been logged out.
+          </div>
+
+          <form method="post" data-th-action="@{'/authenticate'}" class="mt-5">
+            <!-- Email field -->
+            <div class="mb-3">
+              <label
+                for="email"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Your Email
+              </label>
+              <input
+                name="email"
+                type="email"
+                id="email"
+                placeholder="Enter Here"
+                required
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              />
+              <!--
+              <p
+                th:if="${#fields.hasErrors('email')}"
+                th:errors="*{email}"
+                class="text-red-600 px-1 py-2"
+              ></p>
+              -->
+            </div>
+
+            <!-- Password field -->
+            <div class="mb-3">
+              <label
+                for="password"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                New Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              />
+              <!--
+              <p
+                th:if="${#fields.hasErrors('password')}"
+                th:errors="*{password}"
+                class="text-red-600 px-1 py-2"
+              ></p>
+              -->
+            </div>
+
+            <!-- Button section -->
+            <div class="mb-3 flex flex-col sm:flex-row justify-center items-center gap-3">
+              <!-- Login Button -->
+              <button
+                type="submit"
+                class="w-full sm:w-auto px-4 py-2 rounded bg-blue-600 hover:bg-gray-700 text-white dark:bg-blue-400 dark:hover:bg-blue-500 shadow"
+              >
+                Login
+              </button>
+
+              <!-- Reset Button -->
+              <button
+                type="reset"
+                class="w-full sm:w-auto px-4 py-2 rounded bg-red-600 hover:bg-blue-700 text-white dark:bg-blue-400 dark:hover:bg-blue-500 shadow"
+              >
+                Reset
+              </button>
+            </div>
+          </form>
+
+          <!-- Social login buttons -->
+          <div class="social-buttons-container flex justify-center items-center flex-col space-y-4 mt-10">
+            
+            <!-- Google Login -->
+            <a
+              href="/oauth2/authorization/google"
+              class="w-full sm:w-auto flex items-center justify-center px-4 py-2 bg-white text-gray-700 font-medium text-sm border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition duration-150"
+            >
+              <img
+                class="w-5 h-5 mr-2"
+                src="https://www.svgrepo.com/show/355037/google.svg"
+                alt="Google logo"
+              />
+              Sign in with Google
+            </a>
+
+            <!-- GitHub Login -->
+            <a
+              href="/oauth2/authorization/github"
+              class="w-full sm:w-auto flex items-center justify-center px-4 py-2 bg-gray-800 text-white font-medium text-sm rounded-md shadow hover:bg-gray-900 transition duration-150"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 mr-2"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.1c-3.2.7-3.8-1.5-3.8-1.5-.5-1.1-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.7 1.8 2.4 2.3.2-.8.4-1.4.9-1.7-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.3-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.4 1.2a11.8 11.8 0 0 1 6.2 0c2.4-1.5 3.4-1.2 3.4-1.2.6 1.6.2 2.9.1 3.2.8.9 1.2 2 1.2 3.3 0 4.6-2.7 5.5-5.3 5.9.5.4 1 .9 1 1.9v2.8c0 .3.2.7.8.6A10.9 10.9 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"
+                />
+              </svg>
+              Sign in with GitHub
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      console.log("login page");
+    </script>
+  </body>
+</html>
