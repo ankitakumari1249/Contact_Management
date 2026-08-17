@@ -55,6 +55,48 @@ The main focus of this project was to understand how authentication, authorizati
 * Git
 * GitHub
 * MySQL Workbench
+## Business Problem
+
+Managing personal or customer contact information manually can become difficult when the number of contacts increases. Storing contact details in notebooks, spreadsheets, or different places can make it difficult to find, update, and maintain accurate information.
+
+This project addresses these problems by providing a **centralized contact management system** where users can securely store and manage their contacts from one application.
+
+### Problems Addressed
+
+* **Scattered contact information:** Contact details can be stored in one centralized system instead of keeping them in multiple places.
+* **Difficult contact management:** Users can easily add, view, update, and delete contact information from the application.
+* **Time-consuming search:** Users can search for contacts instead of manually going through a large list.
+* **Data security:** Authentication and authorization help ensure that only authorized users can access protected parts of the application.
+* **Unauthorized access:** Spring Security and role-based access control restrict access to protected pages and features.
+* **Manual data maintenance:** CRUD operations make it easier to keep contact information up to date.
+* **Multiple login methods:** OAuth2 login provides an additional and convenient authentication option.
+
+### Solution
+
+The application provides a secure web-based platform where users can:
+
+```text
+User
+  ↓
+Secure Login / OAuth2 Login
+  ↓
+Contact Dashboard
+  ↓
+Search Contacts
+  ↓
+Add / View / Update / Delete
+  ↓
+MySQL Database
+```
+
+All contact information is stored in a MySQL database and managed through **Spring Data JPA and Hibernate**.
+
+### Business Value
+
+The system helps reduce the effort required to manage contact information by providing a single, secure place to store and maintain contacts. It also improves accessibility, makes searching and updating information easier, and adds security through authentication and role-based authorization.
+
+In short, the project solves the problem of **manually managing and securing contact information by providing a centralized, authenticated, and easy-to-use contact management system**.
+
 
 ## How It Works
 
